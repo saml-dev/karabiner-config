@@ -5,6 +5,7 @@ import {
   NumberKeyValue,
   rule,
   withMapper,
+  withModifier,
   writeToProfile,
 } from 'karabiner.ts';
 
@@ -34,12 +35,14 @@ import {
 
 writeToProfile('sam', [
   duoLayer('f', 'd', 'fd duo layer').manipulators([
-    map('j').to('down_arrow'),
-    map('k').to('up_arrow'),
-    map('h').to('left_arrow'),
-    map('l').to('right_arrow'),
-    map('u').to('left_arrow', 'command'),
-    map('i').to('right_arrow', 'command'),
+    withModifier('optionalAny')([
+      map('j').to('down_arrow'),
+      map('k').to('up_arrow'),
+      map('h').to('left_arrow'),
+      map('l').to('right_arrow'),
+      map('u').to('left_arrow', 'command'),
+      map('i').to('right_arrow', 'command'),
+    ]),
   ]),
   rule('caps lock to escape').manipulators([map('caps_lock').to('escape')]),
 ]);
