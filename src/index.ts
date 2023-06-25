@@ -42,6 +42,8 @@ writeToProfile('sam', [
       map('l').to('right_arrow'),
       map('u').to('left_arrow', 'command'),
       map('i').to('right_arrow', 'command'),
+      map('n').to('left_arrow', 'option'),
+      map('m').to('right_arrow', 'option'),
     ]),
   ]),
   rule('caps lock to escape').manipulators([map('caps_lock').to('escape')]),
