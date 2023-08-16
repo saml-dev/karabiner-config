@@ -1,10 +1,7 @@
 import {
   duoLayer,
-  layer,
   map,
-  NumberKeyValue,
   rule,
-  withMapper,
   withModifier,
   writeToProfile,
 } from 'karabiner.ts';
