@@ -1,5 +1,6 @@
 import {
   duoLayer,
+  layer,
   map,
   rule,
   withModifier,
@@ -31,22 +32,40 @@ import {
 // ]);
 
 writeToProfile('sam', [
-  duoLayer('f', 'd', 'fd duo layer').manipulators([
-    withModifier('optionalAny')([
-      map('j').to('down_arrow'),
-      map('k').to('up_arrow'),
-      map('h').to('left_arrow'),
-      map('l').to('right_arrow'),
-      map('u').to('left_arrow', 'command'),
-      map('i').to('right_arrow', 'command'),
-      map('n').to('left_arrow', 'option'),
-      map('m').to('right_arrow', 'option'),
-      map('s').to('tab', ['control']),
-      map('a').toIfAlone('tab', ['control', 'shift']),
-      map('o').to('-', ['control']),
-      map('p').to('-', ['control', 'shift']),
-      map('w').to('y', ['command']),
+  layer('caps_lock', 'caps_layer')
+    .configKey((k) => k.toIfAlone('escape'))
+    .manipulators([
+      withModifier('optionalAny')([
+        map('j').to('down_arrow'),
+        map('k').to('up_arrow'),
+        map('h').to('left_arrow'),
+        map('l').to('right_arrow'),
+        map('u').to('left_arrow', 'command'),
+        map('i').to('right_arrow', 'command'),
+        map('n').to('left_arrow', 'option'),
+        map('m').to('right_arrow', 'option'),
+        map('s').to('tab', ['control']),
+        map('a').toIfAlone('tab', ['control', 'shift']),
+        map('o').to('-', ['control']),
+        map('p').to('-', ['control', 'shift']),
+        map('w').to('y', ['command']),
+      ]),
     ]),
-  ]),
-  rule('caps lock to escape').manipulators([map('caps_lock').to('escape')]),
+  // duoLayer('f', 'd', 'fd duo layer').manipulators([
+  //   withModifier('optionalAny')([
+  //     map('j').to('down_arrow'),
+  //     map('k').to('up_arrow'),
+  //     map('h').to('left_arrow'),
+  //     map('l').to('right_arrow'),
+  //     map('u').to('left_arrow', 'command'),
+  //     map('i').to('right_arrow', 'command'),
+  //     map('n').to('left_arrow', 'option'),
+  //     map('m').to('right_arrow', 'option'),
+  //     map('s').to('tab', ['control']),
+  //     map('a').toIfAlone('tab', ['control', 'shift']),
+  //     map('o').to('-', ['control']),
+  //     map('p').to('-', ['control', 'shift']),
+  //     map('w').to('y', ['command']),
+  //   ]),
+  // ]),
 ]);
