@@ -31,41 +31,29 @@ import {
 //   ]),
 // ]);
 
+let manipulators = [
+  map('j').to('down_arrow'),
+  map('k').to('up_arrow'),
+  map('h').to('left_arrow'),
+  map('l').to('right_arrow'),
+  map('u').to('left_arrow', 'command'),
+  map('i').to('right_arrow', 'command'),
+  map('n').to('left_arrow', 'option'),
+  map('m').to('right_arrow', 'option'),
+  map('d').to('tab', ['control']),
+  map('f').to('tab', ['control', 'shift']),
+  map('o').to('-', ['control']),
+  map('p').to('-', ['control', 'shift']),
+  map('w').to('y', ['command']),
+  map('equal_sign').to('volume_up'),
+  map('hyphen').to('volume_down'),
+  map('0').to('mute'),
+];
+
 writeToProfile('sam', [
   layer('caps_lock', 'caps_layer')
-    .configKey((k) => k.toIfAlone('escape'))
-    .manipulators([
-      withModifier('optionalAny')([
-        map('j').to('down_arrow'),
-        map('k').to('up_arrow'),
-        map('h').to('left_arrow'),
-        map('l').to('right_arrow'),
-        map('u').to('left_arrow', 'command'),
-        map('i').to('right_arrow', 'command'),
-        map('n').to('left_arrow', 'option'),
-        map('m').to('right_arrow', 'option'),
-        map('s').to('tab', ['control']),
-        map('a').toIfAlone('tab', ['control', 'shift']),
-        map('o').to('-', ['control']),
-        map('p').to('-', ['control', 'shift']),
-        map('w').to('y', ['command']),
-      ]),
-    ]),
-  // duoLayer('f', 'd', 'fd duo layer').manipulators([
-  //   withModifier('optionalAny')([
-  //     map('j').to('down_arrow'),
-  //     map('k').to('up_arrow'),
-  //     map('h').to('left_arrow'),
-  //     map('l').to('right_arrow'),
-  //     map('u').to('left_arrow', 'command'),
-  //     map('i').to('right_arrow', 'command'),
-  //     map('n').to('left_arrow', 'option'),
-  //     map('m').to('right_arrow', 'option'),
-  //     map('s').to('tab', ['control']),
-  //     map('a').toIfAlone('tab', ['control', 'shift']),
-  //     map('o').to('-', ['control']),
-  //     map('p').to('-', ['control', 'shift']),
-  //     map('w').to('y', ['command']),
-  //   ]),
-  // ]),
+    .modifiers('optionalAny')
+    .configKey((k) => k.toIfAlone('escape'), true)
+    .manipulators(manipulators),
+  duoLayer('f', 'd', 'fd duo layer').manipulators(manipulators),
 ]);
