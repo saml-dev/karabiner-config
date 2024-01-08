@@ -31,7 +31,7 @@ import {
 //   ]),
 // ]);
 
-let manipulators = [
+let fdManipulators = [
   map('j').to('down_arrow'),
   map('k').to('up_arrow'),
   map('h').to('left_arrow'),
@@ -40,8 +40,6 @@ let manipulators = [
   map('i').to('right_arrow', 'command'),
   map('n').to('left_arrow', 'option'),
   map('m').to('right_arrow', 'option'),
-  map('f').to('tab', ['control']),
-  map('d').to('tab', ['control', 'shift']),
   map('o').to('-', ['control']),
   map('p').to('-', ['control', 'shift']),
   map('w').to('y', ['command']),
@@ -50,10 +48,15 @@ let manipulators = [
   map('0').to('mute'),
 ];
 
+let capsManipulators = [
+  map('f').to('tab', ['control']),
+  map('d').to('tab', ['control', 'shift']),
+];
+
 writeToProfile('sam', [
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
     .configKey((k) => k.toIfAlone('escape'), true)
-    .manipulators(manipulators),
-  duoLayer('f', 'd', 'fd duo layer').manipulators(manipulators),
+    .manipulators(capsManipulators),
+  duoLayer('f', 'd', 'fd duo layer').manipulators(fdManipulators),
 ]);
