@@ -51,6 +51,8 @@ let fdManipulators = [
 let capsManipulators = [
   map('f').to('tab', ['control']),
   map('d').to('tab', ['control', 'shift']),
+  map('c').to('delete_or_backspace'),
+  map('v').to('spacebar'),
 ];
 
 writeToProfile('sam', [
