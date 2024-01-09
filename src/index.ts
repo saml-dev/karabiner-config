@@ -3,6 +3,7 @@ import {
   layer,
   map,
   rule,
+  withMapper,
   withModifier,
   writeToProfile,
 } from 'karabiner.ts';
@@ -31,7 +32,7 @@ import {
 //   ]),
 // ]);
 
-let fdManipulators = [
+let fdManipulators = withModifier('optionalAny')([
   map('j').to('down_arrow'),
   map('k').to('up_arrow'),
   map('h').to('left_arrow'),
@@ -46,7 +47,7 @@ let fdManipulators = [
   map('equal_sign').to('volume_up'),
   map('hyphen').to('volume_down'),
   map('0').to('mute'),
-];
+]);
 
 let capsManipulators = [
   map('f').to('tab', ['control']),
@@ -55,10 +56,22 @@ let capsManipulators = [
   map('v').to('spacebar'),
 ];
 
+let symbolsManipulators = [
+  map('j').to('9', ['shift']), // left parenthesis
+  map('k').to('0', ['shift']), // right parenthesis
+  map('m').to('open_bracket', ['shift']),
+  map(',').to('close_bracket', ['shift']),
+  map('u').to('open_bracket'),
+  map('i').to('close_bracket'),
+];
+
 writeToProfile('sam', [
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
     .configKey((k) => k.toIfAlone('escape'), true)
     .manipulators(capsManipulators),
-  duoLayer('f', 'd', 'fd duo layer').manipulators(fdManipulators),
+  duoLayer('f', 'd', 'fd duo layer').manipulators([fdManipulators]),
+  layer(';', 'symbols layer')
+    // .configKey(k => k.toIfAlone(';'))
+    .manipulators(symbolsManipulators),
 ]);
