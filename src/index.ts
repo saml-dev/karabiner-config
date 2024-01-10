@@ -59,10 +59,10 @@ let capsManipulators = [
 let symbolsManipulators = [
   map('j').to('9', ['shift']), // left parenthesis
   map('k').to('0', ['shift']), // right parenthesis
-  map('m').to('open_bracket', ['shift']),
-  map(',').to('close_bracket', ['shift']),
-  map('u').to('open_bracket'),
-  map('i').to('close_bracket'),
+  map('u').to('open_bracket', ['shift']),
+  map('i').to('close_bracket', ['shift']),
+  map('m').to('open_bracket'),
+  map(',').to('close_bracket'),
 ];
 
 writeToProfile('sam', [
