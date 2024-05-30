@@ -69,8 +69,9 @@ writeToProfile('sam', [
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
     .configKey((k) => k.toIfAlone('escape'), true)
-    .manipulators(capsManipulators),
-  duoLayer('f', 'd', 'fd duo layer').manipulators([fdManipulators]),
+    .manipulators(capsManipulators)
+    .manipulators(fdManipulators.build()),
+  // duoLayer('f', 'd', 'fd duo layer').manipulators([fdManipulators]),
   layer('f16', 'symbols layer')
     // .configKey(k => k.toIfAlone(';'))
     .manipulators(symbolsManipulators),
