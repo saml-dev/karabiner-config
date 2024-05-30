@@ -71,7 +71,7 @@ writeToProfile('sam', [
     .configKey((k) => k.toIfAlone('escape'), true)
     .manipulators(capsManipulators),
   duoLayer('f', 'd', 'fd duo layer').manipulators([fdManipulators]),
-  layer(';', 'symbols layer')
+  layer('f16', 'symbols layer')
     // .configKey(k => k.toIfAlone(';'))
     .manipulators(symbolsManipulators),
 ]);
