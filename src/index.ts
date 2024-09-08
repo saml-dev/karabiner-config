@@ -34,10 +34,10 @@ let capsManipulators = [
 let symbolsManipulators = [
   map('j').to('9', ['shift']), // left parenthesis
   map('k').to('0', ['shift']), // right parenthesis
-  map('u').to('open_bracket', ['shift']),
-  map('i').to('close_bracket', ['shift']),
-  map('m').to('open_bracket'),
-  map(',').to('close_bracket'),
+  map('u').to('open_bracket', ['shift']), // open curly bracket
+  map('i').to('close_bracket', ['shift']), // close curly bracket
+  map('m').to('open_bracket'), // left bracket
+  map(',').to('close_bracket'), // right bracket
 ];
 
 writeToProfile('sam', [
@@ -50,7 +50,6 @@ writeToProfile('sam', [
   simlayer(';', 'symbol')
     .options({
       key_down_order: 'strict',
-      // key_up_order: 'strict_inverse',
     })
     .modifiers('optionalAny')
     .manipulators([
@@ -68,9 +67,9 @@ writeToProfile('sam', [
         { key_code: 'hyphen' },
         { key_code: 'period', modifiers: ['shift'] },
       ]), // =>
-      ...symbolsManipulators,
     ]),
 
+  // Open in (a)rc
   duoLayer(';', 'a', 'arc layer')
     .options({
       key_down_order: 'strict',
@@ -86,6 +85,7 @@ writeToProfile('sam', [
       map('r').to$('open https://old.reddit.com'),
     ]),
 
+  // (J)ump to app
   duoLayer(';', 'j', 'jump layer')
     .description('Jump')
     .notification('Jump')
@@ -97,5 +97,6 @@ writeToProfile('sam', [
       map('a').toApp('Arc'),
       map('v').toApp('Visual Studio Code'),
       map('m').toApp('Messages'),
+      map('t').toApp('Alacritty'),
     ]),
 ]);
