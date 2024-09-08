@@ -2,35 +2,10 @@ import {
   duoLayer,
   layer,
   map,
-  rule,
-  withMapper,
+  simlayer,
   withModifier,
   writeToProfile,
 } from 'karabiner.ts';
-
-// ! Change '--dry-run' to your Karabiner-Elements Profile name.
-// (--dry-run print the config json into console)
-// + Create a new profile if needed.
-// writeToProfile('--dry-run', [
-//   // It is not required, but recommended to put symbol alias to layers,
-//   // (If you type fast, use simlayer instead, see https://evan-liu.github.io/karabiner.ts/rules/simlayer)
-//   // to make it easier to write '←' instead of 'left_arrow'.
-//   // Supported alias: https://github.com/evan-liu/karabiner.ts/blob/main/src/utils/key-alias.ts
-//   layer('/', 'symbol-mode').manipulators([
-//     //     / + [ 1    2    3    4    5 ] =>
-//     withMapper(['⌘', '⌥', '⌃', '⇧', '⇪'])((k, i) =>
-//       map((i + 1) as NumberKeyValue).toPaste(k),
-//     ),
-//     withMapper(['←', '→', '↑', '↓', '␣', '⏎', '⇥', '⎋', '⌫', '⌦', '⇪'])((k) =>
-//       map(k).toPaste(k),
-//     ),
-//   ]),
-
-//   rule('Key mapping').manipulators([
-//     // config key mappings
-//     map(1).to(1),
-//   ]),
-// ]);
 
 let fdManipulators = withModifier('optionalAny')([
   map('j').to('down_arrow'),
@@ -71,8 +46,56 @@ writeToProfile('sam', [
     .configKey((k) => k.toIfAlone('escape'), true)
     .manipulators(capsManipulators)
     .manipulators(fdManipulators.build()),
-  // duoLayer('f', 'd', 'fd duo layer').manipulators([fdManipulators]),
-  layer('f16', 'symbols layer')
-    // .configKey(k => k.toIfAlone(';'))
-    .manipulators(symbolsManipulators),
+
+  simlayer(';', 'symbol')
+    .options({
+      key_down_order: 'strict',
+      // key_up_order: 'strict_inverse',
+    })
+    .modifiers('optionalAny')
+    .manipulators([
+      map('d').to('9', ['shift']), // left parenthesis
+      map('f').to('0', ['shift']), // right parenthesis
+      map('e').to('open_bracket', ['shift']), // left curly bracket
+      map('r').to('close_bracket', ['shift']), // right curly bracket
+      map('c').to('open_bracket'), // left bracket
+      map('v').to('close_bracket'), // right bracket
+      map('t').to([
+        { key_code: 'equal_sign' },
+        { key_code: 'period', modifiers: ['shift'] },
+      ]), // =>
+      map('g').to([
+        { key_code: 'hyphen' },
+        { key_code: 'period', modifiers: ['shift'] },
+      ]), // =>
+      ...symbolsManipulators,
+    ]),
+
+  duoLayer(';', 'a', 'arc layer')
+    .options({
+      key_down_order: 'strict',
+    })
+    .description('Arc')
+    .notification('Arc')
+    .leaderMode({ escape: [';'] })
+    .manipulators([
+      map('t').to$('open https://x.com'),
+      map('l').to$('open https://laravel.com/docs'),
+      map('b').to$('open https://bsky.app'),
+      map('n').to$('open https://news.ycombinator.com'),
+      map('r').to$('open https://old.reddit.com'),
+    ]),
+
+  duoLayer(';', 'j', 'jump layer')
+    .description('Jump')
+    .notification('Jump')
+    .options({
+      key_down_order: 'strict',
+    })
+    .leaderMode({ escape: ';' })
+    .manipulators([
+      map('a').toApp('Arc'),
+      map('v').toApp('Visual Studio Code'),
+      map('m').toApp('Messages'),
+    ]),
 ]);
