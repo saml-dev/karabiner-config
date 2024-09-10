@@ -85,6 +85,20 @@ writeToProfile('sam', [
       map('r').to$('open https://old.reddit.com'),
     ]),
 
+  // (E)moji
+  duoLayer(';', 'w', 'emoji layer')
+    .description('Emoji')
+    .notification('Emoji')
+    .leaderMode({ escape: ';' })
+    .manipulators([
+      map('s').toPaste('😁'),
+      map('c').toPaste('😭'),
+      map('t').toPaste('👍'),
+      map('j').toPaste('😂'),
+      map('l').toPaste('🤣'),
+      map('f').toPaste('😊'),
+    ]),
+
   // (J)ump to app
   duoLayer(';', 'j', 'jump layer')
     .description('Jump')
