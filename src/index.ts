@@ -1,10 +1,12 @@
 import {
+  letterKeyCodes,
   duoLayer,
   layer,
   map,
   simlayer,
   withModifier,
   writeToProfile,
+  FromKeyCode,
 } from 'karabiner.ts';
 
 let fdManipulators = withModifier('optionalAny')([
@@ -40,6 +42,22 @@ let symbolsManipulators = [
   map(',').to('close_bracket'), // right bracket
 ];
 
+function getEscape(l: string[]) {
+  return (
+    letterKeyCodes
+      .filter((k) => !l.includes(k))
+      // @ts-ignore
+      .concat([
+        ';',
+        'spacebar',
+        'escape',
+        'caps_lock',
+        'delete_or_backspace',
+        'return_or_enter',
+      ] as FromKeyCode[])
+  );
+}
+
 writeToProfile('sam', [
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
@@ -66,7 +84,7 @@ writeToProfile('sam', [
       map('g').to([
         { key_code: 'hyphen' },
         { key_code: 'period', modifiers: ['shift'] },
-      ]), // =>
+      ]), // ->
     ]),
 
   // Open in (a)rc
@@ -76,7 +94,7 @@ writeToProfile('sam', [
     })
     .description('Arc')
     .notification('Arc')
-    .leaderMode({ escape: [';'] })
+    .leaderMode({ escape: getEscape('tlbnr'.split('')) })
     .manipulators([
       map('t').to$('open https://x.com'),
       map('l').to$('open https://laravel.com/docs'),
@@ -89,7 +107,7 @@ writeToProfile('sam', [
   duoLayer(';', 'w', 'emoji layer')
     .description('Emoji')
     .notification('Emoji')
-    .leaderMode({ escape: ';' })
+    .leaderMode({ escape: getEscape('sctjlf'.split('')) })
     .manipulators([
       map('s').toPaste('😁'),
       map('c').toPaste('😭'),
@@ -106,7 +124,9 @@ writeToProfile('sam', [
     .options({
       key_down_order: 'strict',
     })
-    .leaderMode({ escape: ';' })
+    .leaderMode({
+      escape: getEscape('avmt'.split('')),
+    })
     .manipulators([
       map('a').toApp('Arc'),
       map('v').toApp('Visual Studio Code'),
