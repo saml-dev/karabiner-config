@@ -68,6 +68,7 @@ writeToProfile('sam', [
   simlayer(';', 'symbol')
     .options({
       key_down_order: 'strict',
+      key_up_order: 'insensitive',
     })
     .modifiers('optionalAny')
     .manipulators([
