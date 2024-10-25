@@ -29,8 +29,10 @@ let fdManipulators = withModifier('optionalAny')([
 let capsManipulators = [
   map('f').to('tab', ['control']),
   map('d').to('tab', ['control', 'shift']),
-  map('c').to('delete_or_backspace'),
-  map('v').to('spacebar'),
+  map('c').to$(
+    'open raycast://extensions/raycast/system/toggle-system-appearance',
+  ),
+  // map('v').to('spacebar'),
 ];
 
 let symbolsManipulators = [
