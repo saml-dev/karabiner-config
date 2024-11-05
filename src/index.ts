@@ -104,6 +104,7 @@ writeToProfile('sam', [
       map('b').to$('open https://bsky.app'),
       map('n').to$('open https://news.ycombinator.com'),
       map('r').to$('open https://old.reddit.com'),
+      map('c').to$('open https://calendar.google.com'),
     ]),
 
   // (E)moji
