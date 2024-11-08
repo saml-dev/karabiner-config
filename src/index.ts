@@ -7,6 +7,7 @@ import {
   withModifier,
   writeToProfile,
   FromKeyCode,
+  rule,
 } from 'karabiner.ts';
 
 let fdManipulators = withModifier('optionalAny')([
@@ -32,6 +33,7 @@ let capsManipulators = [
   map('c').to$(
     'open raycast://extensions/raycast/system/toggle-system-appearance',
   ),
+  map('y').to('delete_or_backspace'),
   // map('v').to('spacebar'),
 ];
 
@@ -61,6 +63,10 @@ function getEscape(l: string[]) {
 }
 
 writeToProfile('sam', [
+  rule('bksp').manipulators([
+    map('f16').to('delete_or_backspace'),
+    map('delete_or_backspace').to('f20'),
+  ]),
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
     .configKey((k) => k.toIfAlone('escape'), true)
