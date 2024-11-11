@@ -65,7 +65,7 @@ function getEscape(l: string[]) {
 writeToProfile('sam', [
   rule('bksp').manipulators([
     map('f16').to('delete_or_backspace'),
-    map('delete_or_backspace').to('f20'),
+    // map('delete_or_backspace').to('f20'),
   ]),
   layer('caps_lock', 'caps_layer')
     .modifiers('optionalAny')
