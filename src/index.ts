@@ -8,6 +8,7 @@ import {
   writeToProfile,
   FromKeyCode,
   rule,
+  modifierLayer,
 } from 'karabiner.ts';
 
 let fdManipulators = withModifier('optionalAny')([
@@ -97,35 +98,36 @@ writeToProfile('sam', [
     ]),
 
   // Open in (a)rc
-  duoLayer(';', 'a', 'arc layer')
-    .options({
-      key_down_order: 'strict',
-    })
-    .description('Arc')
-    .notification('Arc')
-    .leaderMode({ escape: getEscape('tlbnr'.split('')) })
-    .manipulators([
-      map('t').to$('open https://x.com'),
-      map('l').to$('open https://laravel.com/docs'),
-      map('b').to$('open https://bsky.app'),
-      map('n').to$('open https://news.ycombinator.com'),
-      map('r').to$('open https://old.reddit.com'),
-      map('c').to$('open https://calendar.google.com'),
-    ]),
+  // duoLayer(';', 'a', 'arc layer')
+  // layer('f18', 'arc layer')
+  // .options({
+  //   key_down_order: 'strict',
+  // })
+  // .description('Arc')
+  // .notification('Arc')
+  // .leaderMode({ escape: getEscape('tlbnrc'.split('')) })
+  // .manipulators([
+  //   map('t').to$('open https://x.com'),
+  //   map('l').to$('open https://laravel.com/docs'),
+  //   map('b').to$('open https://bsky.app'),
+  //   map('n').to$('open https://news.ycombinator.com'),
+  //   map('r').to$('open https://old.reddit.com'),
+  //   map('c').to$('open https://calendar.google.com'),
+  // ]),
 
   // (E)moji
-  duoLayer(';', 'w', 'emoji layer')
-    .description('Emoji')
-    .notification('Emoji')
-    .leaderMode({ escape: getEscape('sctjlf'.split('')) })
-    .manipulators([
-      map('s').toPaste('😁'),
-      map('c').toPaste('😭'),
-      map('t').toPaste('👍'),
-      map('j').toPaste('😂'),
-      map('l').toPaste('🤣'),
-      map('f').toPaste('😊'),
-    ]),
+  // duoLayer(';', 'w', 'emoji layer')
+  //   .description('Emoji')
+  //   .notification('Emoji')
+  //   .leaderMode({ escape: getEscape('sctjlf'.split('')) })
+  //   .manipulators([
+  //     map('s').toPaste('😁'),
+  //     map('c').toPaste('😭'),
+  //     map('t').toPaste('👍'),
+  //     map('j').toPaste('😂'),
+  //     map('l').toPaste('🤣'),
+  //     map('f').toPaste('😊'),
+  //   ]),
 
   // (J)ump to app
   duoLayer(';', 'j', 'jump layer')
