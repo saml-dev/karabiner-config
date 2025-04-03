@@ -35,6 +35,7 @@ let capsManipulators = [
     'open raycast://extensions/raycast/system/toggle-system-appearance',
   ),
   map('y').to('delete_or_backspace'),
+  map('delete_or_backspace').to('delete_or_backspace', ['left_option'])
   // map('v').to('spacebar'),
 ];
 
